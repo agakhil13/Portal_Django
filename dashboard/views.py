@@ -261,3 +261,60 @@ def wiki(request):
         form = DashboardForm()
         context = {'form':form}
     return render(request,'dashboard/wiki.html', context)
+
+def conversion(request):
+    if request.method == "POST":
+        form = ConversionForm(request.POST)  
+        if request.POST['measurement'] == 'length':
+            measurement_form = ConversionLengthForm()
+            context = {
+                 'form': form,
+                 'm_form': measurement_form,
+                 'input': True
+            }
+            if 'input' in request.POST:
+                first = request.POST['measure1']
+                second = request.POST['measure2']
+                input = request.POST['input']
+                answer = ''
+                if input and int(input) >= 0:
+                    if first == 'yard' and second == 'foot':
+                        answer = f'{input} Yard = {int(input)*3} Foot'
+                    if first == 'foot' and second == 'yard':
+                        answer = f'{input} Foot = {int(input)/3} Yard'
+                context = {
+                    'form':form,
+                    'm_form':measurement_form,
+                    'input': True,
+                    'answer':answer
+                }
+        if request.POST['measurement'] == 'mass':
+            measurement_form = ConversionMassForm()  
+            context = {
+                 'form': form,
+                 'm_form': measurement_form,
+                 'input': True
+             }
+            if 'input' in request.POST:
+                first = request.POST['measure1']
+                second = request.POST['measure2']
+                input = request.POST['input']
+                answer = ''
+                if input and int(input) >= 0:
+                    if first == 'pound' and second == 'kilogram':
+                        answer = f'{input} Pound = {int(input)*0.453592} Kilogram'
+                    if first == 'kilogram' and second == 'pound':
+                        answer = f'{input} Kilogram = {int(input)*2.20462} Pound'
+                context = {
+                    'form':form,
+                    'm_form':measurement_form,
+                    'input': True,
+                    'answer':answer
+                }            
+    else:
+        form = ConversionForm()
+        context = {
+        'form': form,
+        'input': False
+    }
+    return render(request,'dashboard/conversion.html', context)
