@@ -10,9 +10,9 @@
         <input class="btn btn-danger" type="submit" value="Submit">
     </form><br>
     <div class="content-section p-0 mt-5">
-        {% if input %}
+        {% if definition %}
         <div class="custom-header">
-            <h2>{{input}}</h2>
+            <h2>{{input | title}}</h2>
             <h6>{{phonetics}}</h6>
             <audio id="player" src="{{audio}}"></audio>
             <div>
