@@ -6,6 +6,7 @@ from youtubesearchpython import VideosSearch
 import wikipedia
 import requests
 
+
 # Create your views here.
 def home(request):
     return render(request, 'dashboard/home.html')
