@@ -23,9 +23,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-hk+6gz+_#-%97m%_r*w05p*+3gqyt1c(85#1tx-sj$6loied6v'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -126,5 +126,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS=[BASE_DIR/"static"]
+
+LOGIN_REDIRECT_URL = 'home'
+LOGIN_URL = 'login'
 
 CRISPY_TEMPLATE_PACK = "bootstrap4"
